@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# How Does the FrontEnd looks 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![BLOGSITE](src/media/ss1.PNG)
+
+## This is version 0.1 , More versions will be realeased soon .
 
 ## Available Scripts
 
