@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ViewBlog from "./pages/ViewBlog";
+import CreateBlog from "./pages/CreateBlog";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route path="/viewblog">
             <ViewBlog />
+          </Route>
+          <Route path="/create-blog">
+            <CreateBlog />
           </Route>
           <Route path="/register">
             <Register />
