@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ViewBlog from "./pages/ViewBlog";
 import CreateBlog from "./pages/CreateBlog";
+import Account from "./pages/Account";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/account">
+            <Account />
           </Route>
         </Switch>
         <Footer />
