@@ -12,6 +12,7 @@ import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyCard() {
+export default function MyCard({ post }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -56,23 +57,35 @@ export default function MyCard() {
         }
         action={
           <IconButton aria-label="settings">
-            <MoreVertIcon href="/" />
+            <Link to={`/viewblog/${post._id}`}>
+              <MoreVertIcon />
+            </Link>
           </IconButton>
         }
         title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        subheader={new Date(post.createdAt).toDateString()}
       />
-      <CardMedia
-        className={classes.media}
-        image="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-        title="Paella dish"
-      />
+      {post.image && (
+        <CardMedia
+          className={classes.media}
+          image={post.image}
+          title="Paella dish"
+        />
+      )}
+
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+        <Typography variant="h5" color="textPrimary">
+          Title : {post.title}
         </Typography>
+        <Typography variant="subtitle1" color="textSecondary" component="p">
+          {post.desc}
+        </Typography>
+        {post.categories.map((c) => (
+          <>
+            <span>#</span>
+            <span style={{ margin: "0 10px" }}>{c}</span>
+          </>
+        ))}
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
