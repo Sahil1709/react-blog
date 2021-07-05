@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Typography } from "@material-ui/core";
+import axios from "axios";
 
 export default function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    document.getElementById("error").innerHTML = "";
+    setError(false);
+    try {
+      const res = await axios.post("/auth/register", {
+        username,
+        email,
+        password,
+      });
+      // res.data && window.location.replace("/login");
+      res.data &&
+        (document.getElementById("error").innerHTML =
+          "Account created successfully");
+    } catch (err) {
+      setError(true);
+    }
+  };
   return (
     <div
       className="container"
@@ -22,6 +46,7 @@ export default function Register() {
           placeholder="Username"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
       <div className="input-group mb-3">
@@ -32,8 +57,7 @@ export default function Register() {
           type="email"
           class="form-control"
           placeholder="email"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="input-group mb-3">
@@ -46,15 +70,19 @@ export default function Register() {
           placeholder="password"
           aria-label="Password"
           aria-describedby="basic-addon1"
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <Button variant="contained" color="primary">
+      <Button onClick={handleSubmit} variant="contained" color="primary">
         Sign UP
       </Button>
       <Typography>If you Already have an account , Log in ! </Typography>
       <Button href="/login" variant="contained">
         Login
       </Button>
+      <br />
+      {error && <div className="alert alert-danger">Something went wrong</div>}
+      <div id="error" className="alert alert-success"></div>
     </div>
   );
 }

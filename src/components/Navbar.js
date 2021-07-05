@@ -5,8 +5,15 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import "./Navbar.css";
+import { Context } from "../context/Context";
+import { useContext } from "react";
 
 export default function Navbar() {
+  const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:5000/images/";
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,16 +39,7 @@ export default function Navbar() {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Register
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              </li>
+
               <li className="nav-item">
                 <Link className="nav-link" to="/viewblog">
                   View Blog
@@ -52,10 +50,34 @@ export default function Navbar() {
                   Create Blog
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/account">
-                  Account
-                </Link>
+              {user ? (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/account">
+                    <img src={PF + user.profilePic} alt="" />
+                    Account
+                  </Link>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/register">
+                      Register
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  </li>{" "}
+                </>
+              )}
+
+              <li
+                style={{ padding: ".5rem" }}
+                className="nav-item"
+                onClick={handleLogout}
+              >
+                {user && "Logout"}
               </li>
             </ul>
           </div>

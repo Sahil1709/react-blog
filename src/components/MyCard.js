@@ -52,7 +52,7 @@ export default function MyCard({ post }) {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            R
+            S
           </Avatar>
         }
         action={
@@ -62,7 +62,7 @@ export default function MyCard({ post }) {
             </Link>
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title={post.username}
         subheader={new Date(post.createdAt).toDateString()}
       />
       {post.image && (

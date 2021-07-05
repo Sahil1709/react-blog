@@ -1,7 +1,27 @@
 import React from "react";
 import { Button, Typography } from "@material-ui/core";
+import { useRef, useContext } from "react";
+import { Context } from "../context/Context";
+import axios from "axios";
 
 export default function Login() {
+  const userRef = useRef();
+  const passRef = useRef();
+  const { user, dispatch, isfetching } = useContext(Context);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch({ type: "LOGIN_START" });
+    try {
+      const res = await axios.post("/auth/login", {
+        username: userRef.current.value,
+        password: passRef.current.value,
+      });
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE" });
+    }
+  };
+  console.log(user);
   return (
     <div
       className="container"
@@ -18,6 +38,7 @@ export default function Login() {
           placeholder="Username"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          ref={userRef}
         />
       </div>
       <div className="input-group mb-3">
@@ -30,9 +51,15 @@ export default function Login() {
           placeholder="password"
           aria-label="Password"
           aria-describedby="basic-addon1"
+          ref={passRef}
         />
       </div>
-      <Button variant="contained" color="primary">
+      <Button
+        disabled={isfetching}
+        onClick={handleSubmit}
+        variant="contained"
+        color="primary"
+      >
         Login
       </Button>
       <Typography>If you dont have an account , Create one ! </Typography>

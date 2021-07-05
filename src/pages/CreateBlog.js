@@ -21,7 +21,7 @@ function CreateBlog() {
         <input
           type="text"
           class="form-control"
-          placeholder="Username"
+          placeholder="Anything You wish"
           aria-label="Username"
           aria-describedby="basic-addon1"
         />

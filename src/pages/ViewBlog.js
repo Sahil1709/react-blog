@@ -2,7 +2,7 @@ import React from "react";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { IconButton } from "@material-ui/core";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -29,7 +29,22 @@ function ViewBlog() {
           ))}
       </div>
       <div className="flex">
-        <h3>Created By : {post.username}</h3>
+        {post.username ? (
+          <h3>
+            Author :{" "}
+            <Link
+              style={{ textDecoration: "none" }}
+              to={`/?user=${post.username}`}
+            >
+              {post.username}
+            </Link>
+          </h3>
+        ) : (
+          <div class="alert alert-danger" role="alert">
+            This post doesn't have an author
+          </div>
+        )}
+
         <div className="float-end">
           <div>Created At : {new Date(post.createdAt).toDateString()}</div>
           <div>Updated At : {new Date(post.updatedAt).toDateString()}</div>
