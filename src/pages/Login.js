@@ -2,14 +2,17 @@ import React from "react";
 import { Button, Typography } from "@material-ui/core";
 import { useRef, useContext } from "react";
 import { Context } from "../context/Context";
+import { useState } from "react";
 import axios from "axios";
 
 export default function Login() {
   const userRef = useRef();
   const passRef = useRef();
   const { user, dispatch, isfetching } = useContext(Context);
+  const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("/auth/login", {
@@ -18,6 +21,7 @@ export default function Login() {
       });
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
+      setError(true);
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
@@ -66,6 +70,7 @@ export default function Login() {
       <Button href="/register" variant="contained">
         Signup
       </Button>
+      {error && <div className="alert alert-danger">Something went wrong</div>}
     </div>
   );
 }

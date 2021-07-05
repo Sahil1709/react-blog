@@ -1,7 +1,36 @@
 import React from "react";
 import { Button } from "@material-ui/core";
+import { useState, useContext } from "react";
+import { Context } from "../context/Context";
+import axios from "axios";
 
 function CreateBlog() {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [file, setFile] = useState(null);
+  const { user } = useContext(Context);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newPost = {
+      username: user.username,
+      title,
+      desc,
+    };
+    if (file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newPost.photo = filename;
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
+    }
+    try {
+      const res = await axios.post("/posts", newPost);
+      window.location.replace("/post/" + res.data._id);
+    } catch (err) {}
+  };
   return (
     <div
       className="container"
@@ -24,13 +53,18 @@ function CreateBlog() {
           placeholder="Anything You wish"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          onChange={(e) => setTitle(e.target.value)}
         />
       </div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">Description</span>
         </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
+        <textarea
+          onChange={(e) => setDesc(e.target.value)}
+          class="form-control"
+          aria-label="With textarea"
+        ></textarea>
       </div>
       <br />
       <div class="input-group mb-3">
@@ -52,7 +86,7 @@ function CreateBlog() {
         </label>
       </div>
       <div className="text-center">
-        <Button variant="contained" color="primary">
+        <Button onClick={handleSubmit} variant="contained" color="primary">
           Publish
         </Button>
       </div>
