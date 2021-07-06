@@ -29,29 +29,34 @@ function Account() {
   const PF = "http://localhost:5000/images/";
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch({ type: "UPDATE_START" });
-    const updatedUser = {
-      userId: user._id,
-      username,
-      email,
-      password,
-    };
-    if (file) {
-      const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
-      data.append("file", file);
-      updatedUser.profilePicture = filename;
+    if (!username || !email || !password) {
+      document.getElementById("error").innerHTML = "Fields cannot be blank";
+    } else {
+      dispatch({ type: "UPDATE_START" });
+      const updatedUser = {
+        userId: user._id,
+        username,
+        email,
+        password,
+      };
+      if (file) {
+        const data = new FormData();
+        const filename = Date.now() + file.name;
+        data.append("name", filename);
+        data.append("file", file);
+        updatedUser.profilePicture = filename;
+        try {
+          await axios.post("/upload", data);
+        } catch (err) {}
+      }
       try {
-        await axios.post("/upload", data);
-      } catch (err) {}
-    }
-    try {
-      const res = await axios.put("/user/" + user._id, updatedUser);
-      setSuccess(true);
-      dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
-    } catch (err) {
-      dispatch({ type: "UPDATE_FAILURE" });
+        const res = await axios.put("/user/" + user._id, updatedUser);
+        setSuccess(true);
+        document.getElementById("error").innerHTML = "";
+        dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
+      } catch (err) {
+        dispatch({ type: "UPDATE_FAILURE" });
+      }
     }
   };
   return (
@@ -78,7 +83,7 @@ function Account() {
           width="100px"
           height="100px"
           src={file ? URL.createObjectURL(file) : PF + user.profilePicture}
-          alt="No profile picture to display"
+          alt="Nothing to display"
         />
         <input
           accept="image/*"
@@ -139,6 +144,10 @@ function Account() {
           Update
         </Button>
       </div>
+      {success && (
+        <div className="alert alert-success">Account Updated Successfully</div>
+      )}
+      <div id="error" className="alert alert-danger"></div>
     </div>
   );
 }

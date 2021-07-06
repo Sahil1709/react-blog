@@ -1,7 +1,7 @@
 import React from "react";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { IconButton, Input, Button } from "@material-ui/core";
+import { IconButton, Button } from "@material-ui/core";
 import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../context/Context";
@@ -98,7 +98,7 @@ function ViewBlog() {
           <span>{post.desc}</span>
         )}
       </h5>
-      {post.username == user?.username && (
+      {post.username === user?.username && (
         <>
           <IconButton onClick={() => setUpdateMode(true)}>
             <EditIcon color="primary" />

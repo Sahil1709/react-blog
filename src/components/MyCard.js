@@ -14,7 +14,8 @@ import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,18 +46,26 @@ export default function MyCard({ post }) {
   const classes = useStyles();
   const { user } = useContext(Context);
   const PF = "http://localhost:5000/images/";
-  const [expanded, setExpanded] = React.useState(false);
+  const [userPic, setUserPic] = useState(PF);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  useEffect(() => {
+    const getPic = async () => {
+      const res = await axios.get("/user/" + post._id);
+      setUserPic(PF + res.data.profilePicture);
+    };
+    getPic();
+  }, []);
+  // const [expanded, setExpanded] = React.useState(false);
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  // };
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
           <Avatar
-            src={user?.profilePicture && PF + user.profilePicture}
+            src={user?.profilePicture && userPic}
             aria-label="recipe"
             className={classes.avatar}
           />
@@ -84,7 +93,10 @@ export default function MyCard({ post }) {
           Title : {post.title}
         </Typography>
         <Typography variant="subtitle1" color="textSecondary" component="p">
-          {post.desc}
+          {post.desc.substring(0, 105) + "....."} <br />
+          {post.desc.length > 105 && (
+            <Link to={`/viewblog/${post._id}`}>View More</Link>
+          )}
         </Typography>
         {post.categories.map((c) => (
           <>

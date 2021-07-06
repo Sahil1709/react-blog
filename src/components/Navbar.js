@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { TextField } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import IconButton from "@material-ui/core/IconButton";
 import "./Navbar.css";
 import { Context } from "../context/Context";
 import { useContext } from "react";
@@ -36,15 +33,17 @@ export default function Navbar() {
             <ul className="navbar-nav mb-2 mb-lg-0 text-center">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
-                  Home
+                  All Blogs
                 </Link>
               </li>
+              {user && (
+                <li className="nav-item">
+                  <Link className="nav-link" to={`/?user=${user.username}`}>
+                    My Blogs
+                  </Link>
+                </li>
+              )}
 
-              <li className="nav-item">
-                <Link className="nav-link" to="/viewblog">
-                  View Blog
-                </Link>
-              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/create-blog">
                   Create Blog
@@ -52,14 +51,20 @@ export default function Navbar() {
               </li>
               {user ? (
                 <li className="nav-item">
-                  <Link className="nav-link" to="/account">
+                  <Link
+                    style={{ padding: "0px" }}
+                    className="nav-link"
+                    to="/account"
+                  >
+                    <span style={{ paddingRight: "1rem" }}>
+                      Hello, {user.username}
+                    </span>
                     <img
                       width="40px"
                       height="40px"
                       src={user?.profilePicture && PF + user.profilePicture}
                       alt=""
                     />
-                    Hello, {user.username}
                   </Link>
                 </li>
               ) : (
@@ -86,12 +91,7 @@ export default function Navbar() {
               </li>
             </ul>
           </div>
-          <div>
-            <TextField variant="outlined" label="Search" />
-            <IconButton>
-              <SearchIcon fontSize="large" />
-            </IconButton>
-          </div>
+          <div></div>
         </div>
       </nav>
     </div>

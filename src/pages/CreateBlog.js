@@ -12,6 +12,7 @@ function CreateBlog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
+      _id: user._id,
       username: user.username,
       title,
       desc,
