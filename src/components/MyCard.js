@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
     marginTop: "20px",
     marginBottom: "20px",
+    backgroundColor: "rgb(244,244,244)",
   },
   media: {
     height: 0,
@@ -50,7 +51,7 @@ export default function MyCard({ post }) {
 
   useEffect(() => {
     const getPic = async () => {
-      const res = await axios.get("/user/" + post._id);
+      const res = await axios.get("/user/" + post.userId);
       setUserPic(PF + res.data.profilePicture);
     };
     getPic();

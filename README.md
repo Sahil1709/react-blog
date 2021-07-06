@@ -1,8 +1,12 @@
-# How Does the FrontEnd looks 
+# How Does the FrontEnd looks
 
 ![BLOGSITE](src/media/ss1.PNG)
 
-## This is version 0.1 , More versions will be realeased soon .
+## UPDATE VERSION 1.0 JUST GOT RELEASED
+
+### see below
+
+![BLOGSITE](src/media/Capture.PNG)
 
 ## Available Scripts
 

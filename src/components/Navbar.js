@@ -4,6 +4,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import "./Navbar.css";
 import { Context } from "../context/Context";
 import { useContext } from "react";
+import { Button } from "@material-ui/core";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 export default function Navbar() {
   const { user, dispatch } = useContext(Context);
@@ -82,12 +84,17 @@ export default function Navbar() {
                 </>
               )}
 
-              <li
-                style={{ padding: ".5rem" }}
-                className="nav-item"
-                onClick={handleLogout}
-              >
-                {user && "Logout"}
+              <li style={{ padding: ".5rem" }} className="nav-item">
+                {user && (
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    endIcon={<ExitToAppIcon />}
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
+                )}
               </li>
             </ul>
           </div>
