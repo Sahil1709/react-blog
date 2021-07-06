@@ -28,7 +28,7 @@ function CreateBlog() {
     }
     try {
       const res = await axios.post("/posts", newPost);
-      window.location.replace("/post/" + res.data._id);
+      window.location.replace("/viewblog/" + res.data._id);
     } catch (err) {}
   };
   return (
@@ -80,10 +80,27 @@ function CreateBlog() {
               id="contained-button-file"
               multiple
               type="file"
+              onChange={(e) => setFile(e.target.files[0])}
             />
             Upload
           </Button>
         </label>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">
+            Preview Image
+          </span>
+          {file && (
+            <img
+              width="100%"
+              height="100%"
+              className="writeImg"
+              src={URL.createObjectURL(file)}
+              alt=""
+            />
+          )}
+        </div>
       </div>
       <div className="text-center">
         <Button onClick={handleSubmit} variant="contained" color="primary">

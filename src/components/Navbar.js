@@ -53,7 +53,13 @@ export default function Navbar() {
               {user ? (
                 <li className="nav-item">
                   <Link className="nav-link" to="/account">
-                    <img src={PF + user.profilePicture} alt="" /> Account
+                    <img
+                      width="40px"
+                      height="40px"
+                      src={user?.profilePicture && PF + user.profilePicture}
+                      alt=""
+                    />
+                    Hello, {user.username}
                   </Link>
                 </li>
               ) : (

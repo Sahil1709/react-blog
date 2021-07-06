@@ -13,6 +13,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
+import { useContext } from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MyCard({ post }) {
   const classes = useStyles();
+  const { user } = useContext(Context);
+  const PF = "http://localhost:5000/images/";
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -51,9 +55,11 @@ export default function MyCard({ post }) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            S
-          </Avatar>
+          <Avatar
+            src={user?.profilePicture && PF + user.profilePicture}
+            aria-label="recipe"
+            className={classes.avatar}
+          />
         }
         action={
           <IconButton aria-label="settings">
@@ -65,10 +71,10 @@ export default function MyCard({ post }) {
         title={post.username}
         subheader={new Date(post.createdAt).toDateString()}
       />
-      {post.image && (
+      {post.photo && (
         <CardMedia
           className={classes.media}
-          image={post.image}
+          image={PF + post.photo}
           title="Paella dish"
         />
       )}
