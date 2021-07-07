@@ -12,7 +12,7 @@
 
 ### Visit the link below
 
-Click me please -> [BlogSite](https://silly-ride-1a7af0.netlify.app)
+Click me please -> [BlogSite](https://sahils-blogsite.netlify.app/)
 
 ## Available Scripts
 
@@ -55,4 +55,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 - Linking to other pages is not working properly
 - Its showing link is broken
-- Just reload the page to fix this or go back to homepage [BlogSite](https://silly-ride-1a7af0.netlify.app)
+- Just reload the page to fix this or go back to homepage [BlogSite](https://sahils-blogsite.netlify.app/)
