@@ -2,11 +2,17 @@
 
 ![BLOGSITE](src/media/ss1.PNG)
 
-## UPDATE VERSION 1.0 JUST GOT RELEASED
+## ||UPDATE|| VERSION 1.0 JUST GOT RELEASED
 
 ### see below
 
 ![BLOGSITE](src/media/Capture.PNG)
+
+## ||UPDATE|| Finally HOSTED THE SITE ON NETLIFY
+
+### Visit the link below
+
+Click me please -> [BlogSite](https://silly-ride-1a7af0.netlify.app/create-blog)
 
 ## Available Scripts
 
@@ -45,32 +51,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Some Bugs & errors
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Image uploaded by user is not shown properly
+- Authentication system is not working properly
+- Access to XMLHttpRequest at 'https://blog-site-api/fake-api-link' from origin 'https://silly-ride-1a7af0.netlify.app' has been blocked by `CORS policy:`
+  - Cannot parse `Access-Control-Allow-Headers` response header field in `preflight response`.
