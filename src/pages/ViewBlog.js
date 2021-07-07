@@ -15,7 +15,7 @@ function ViewBlog() {
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
   const id = location.pathname.split("/")[2];
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://blough-site.herokuapp.com/images/";
   const [post, setPost] = useState([]);
   useEffect(() => {
     const getPost = async () => {

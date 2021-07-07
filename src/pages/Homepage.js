@@ -43,9 +43,16 @@ export default function Homepage() {
             justifyContent: "space-between",
           }}
         >
-          {posts.map((p) => (
-            <MyCard post={p} />
-          ))}
+          {posts.length > 0 ? (
+            posts.map((p) => <MyCard post={p} />)
+          ) : (
+            <div
+              style={{ marginTop: "100px", marginBottom: "300px" }}
+              className="alert alert-danger text-center"
+            >
+              No posts to display
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -39,5 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000/server/"
+  "proxy": "https://blough-site.herokuapp.com/server/"
 }

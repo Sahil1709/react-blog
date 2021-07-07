@@ -9,7 +9,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 export default function Navbar() {
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://blough-site.herokuapp.com/images/";
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };

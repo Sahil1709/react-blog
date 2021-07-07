@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MyCard({ post }) {
   const classes = useStyles();
   const { user } = useContext(Context);
-  const PF = "http://localhost:5000/images/";
+  const PF = "https://blough-site.herokuapp.com/images/";
   const [userPic, setUserPic] = useState(PF);
 
   useEffect(() => {
