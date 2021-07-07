@@ -16,10 +16,11 @@ function ViewBlog() {
   const [updateMode, setUpdateMode] = useState(false);
   const id = location.pathname.split("/")[2];
   const PF = "https://blough-site.herokuapp.com/images/";
+  const api = "https://blough-site.herokuapp.com/server";
   const [post, setPost] = useState([]);
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + id);
+      const res = await axios.get(api + "/posts/" + id);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -29,7 +30,7 @@ function ViewBlog() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, {
+      await axios.delete(`${api}/posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace("/");
@@ -38,7 +39,7 @@ function ViewBlog() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axios.put(`${api}/posts/${post._id}`, {
         username: user.username,
         title,
         desc,

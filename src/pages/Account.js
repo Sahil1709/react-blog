@@ -27,6 +27,7 @@ function Account() {
 
   const { user, dispatch } = useContext(Context);
   const PF = "https://blough-site.herokuapp.com/images/";
+  const api = "https://blough-site.herokuapp.com/server";
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!username || !email || !password) {
@@ -46,11 +47,11 @@ function Account() {
         data.append("file", file);
         updatedUser.profilePicture = filename;
         try {
-          await axios.post("/upload", data);
+          await axios.post(api + "/upload", data);
         } catch (err) {}
       }
       try {
-        const res = await axios.put("/user/" + user._id, updatedUser);
+        const res = await axios.put(api + "/user/" + user._id, updatedUser);
         setSuccess(true);
         document.getElementById("error").innerHTML = "";
         dispatch({ type: "UPDATE_SUCCESS", payload: res.data });

@@ -7,13 +7,14 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const api = "https://blough-site.herokuapp.com/server";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     document.getElementById("error").innerHTML = "";
     setError(false);
     try {
-      const res = await axios.post("/auth/register", {
+      const res = await axios.post(api + "/auth/register", {
         username,
         email,
         password,

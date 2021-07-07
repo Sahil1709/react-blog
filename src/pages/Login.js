@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Login() {
+  const api = "https://blough-site.herokuapp.com/server";
   const userRef = useRef();
   const passRef = useRef();
   const { user, dispatch, isfetching } = useContext(Context);
@@ -15,7 +16,7 @@ export default function Login() {
     setError(false);
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post(api + "/auth/login", {
         username: userRef.current.value,
         password: passRef.current.value,
       });

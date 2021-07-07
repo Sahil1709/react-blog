@@ -47,19 +47,16 @@ export default function MyCard({ post }) {
   const classes = useStyles();
   const { user } = useContext(Context);
   const PF = "https://blough-site.herokuapp.com/images/";
+  const api = "https://blough-site.herokuapp.com/server";
   const [userPic, setUserPic] = useState(PF);
 
   useEffect(() => {
     const getPic = async () => {
-      const res = await axios.get("/user/" + post.userId);
+      const res = await axios.get(api + "/user/" + post.userId);
       setUserPic(PF + res.data.profilePicture);
     };
     getPic();
   }, []);
-  // const [expanded, setExpanded] = React.useState(false);
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  // };
 
   return (
     <Card className={classes.root}>

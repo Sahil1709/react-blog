@@ -9,6 +9,7 @@ function CreateBlog() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
+  const api = "https://blough-site.herokuapp.com/server";
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -24,11 +25,11 @@ function CreateBlog() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axios.post("/upload", data);
+        await axios.post(api + "/upload", data);
       } catch (err) {}
     }
     try {
-      const res = await axios.post("/posts", newPost);
+      const res = await axios.post(api + "/posts", newPost);
       window.location.replace("/viewblog/" + res.data._id);
     } catch (err) {}
   };
