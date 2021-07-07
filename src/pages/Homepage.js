@@ -7,7 +7,7 @@ export default function Homepage() {
   const { search } = useLocation();
   const [posts, setPosts] = useState([]);
   const [cats, setCats] = useState([]);
-  const api = "https://blough-site.herokuapp.com/server/";
+  const api = "https://blough-site.herokuapp.com/server";
   useEffect(() => {
     const getCats = async () => {
       const res = await axios.get(api + "/categories" + search);
