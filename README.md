@@ -12,7 +12,7 @@
 
 ### Visit the link below
 
-Click me please -> [BlogSite](https://silly-ride-1a7af0.netlify.app/create-blog)
+Click me please -> [BlogSite](https://silly-ride-1a7af0.netlify.app)
 
 ## Available Scripts
 
@@ -53,7 +53,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Some Bugs & errors
 
-- Image uploaded by user is not shown properly
-- Authentication system is not working properly
-- Access to XMLHttpRequest at 'https://blog-site-api/fake-api-link' from origin 'https://silly-ride-1a7af0.netlify.app' has been blocked by `CORS policy:`
-  - Cannot parse `Access-Control-Allow-Headers` response header field in `preflight response`.
+- Linking to other pages is not working properly
+- Its showing link is broken
+- Just reload the page to fix this or go back to homepage [BlogSite](https://silly-ride-1a7af0.netlify.app)
