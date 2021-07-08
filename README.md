@@ -53,6 +53,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Some Bugs & errors
 
-- Linking to other pages is not working properly
-- Its showing link is broken
-- Just reload the page to fix this or go back to homepage [BlogSite](https://sahils-blogsite.netlify.app/)
+- Image feature is not working properly
+- When you upload the image it just stays in the browser cache for some time , then it automatically disappears .
+- When updating profile , you have to enter all the details of your profile again , if you change some details your updated details will be saved .
+- You can only see the profile picture of users untill you have logged in . (This is a feature not a bug)
+- Like and share buttons are just for show .
